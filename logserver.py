@@ -5,6 +5,9 @@ import socketserver
 import struct
 
 
+__version__ = "0.0.1"
+
+
 class LogRecordStreamHandler(socketserver.StreamRequestHandler):
     """Handler for a streaming logging request.
 
