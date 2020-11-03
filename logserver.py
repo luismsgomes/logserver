@@ -4,8 +4,10 @@ import logging.handlers
 import socketserver
 import struct
 
-
 __version__ = "0.0.2"
+
+
+LOG = logging.getLogger("logserver")
 
 
 class LogRecordStreamHandler(socketserver.StreamRequestHandler):
@@ -76,14 +78,18 @@ class LogRecordSocketReceiver(socketserver.ThreadingTCPServer):
                 self.handle_request()
             abort = self.abort
 
+
+
 def main():
     logging.basicConfig(
-        format='%(relativeCreated)5d %(name)-15s %(levelname)-8s %(message)s',
+        datefmt="%Y-%m-%d %H:%M:%S",
+        format='%(asctime)s [pid=%(process)d] %(name)s %(levelname)-8s %(message)s',
         level=logging.DEBUG,
     )
+    LOG.info('starting')
     tcpserver = LogRecordSocketReceiver()
-    print('About to start TCP server...')
     tcpserver.serve_until_stopped()
+    LOG.info('terminated')
 
 if __name__ == '__main__':
     main()
