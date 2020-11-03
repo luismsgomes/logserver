@@ -4,7 +4,7 @@ import logging.handlers
 import socketserver
 import struct
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 
 LOG = logging.getLogger("logserver")
