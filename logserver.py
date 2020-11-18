@@ -1,6 +1,7 @@
 import pickle
 import logging
 import logging.handlers
+import multiprocessing
 import socketserver
 import struct
 
@@ -79,7 +80,6 @@ class LogRecordSocketReceiver(socketserver.ThreadingTCPServer):
             abort = self.abort
 
 
-
 def main():
     logging.basicConfig(
         datefmt="%Y-%m-%d %H:%M:%S",
@@ -90,6 +90,12 @@ def main():
     tcpserver = LogRecordSocketReceiver()
     tcpserver.serve_until_stopped()
     LOG.info('terminated')
+
+
+def spawn():
+    daemon = multiprocessing.Process(target=main, name="logserver", daemon=True)
+    daemon.start()
+
 
 if __name__ == '__main__':
     main()
