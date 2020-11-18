@@ -5,7 +5,7 @@ import multiprocessing
 import socketserver
 import struct
 
-__version__ = "0.0.3"
+__version__ = "0.1.0"
 
 
 LOG = logging.getLogger("logserver")

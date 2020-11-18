@@ -3,7 +3,7 @@ from setuptools import setup
 # https://setuptools.readthedocs.io/en/latest/
 setup(
     name="logserver",
-    version="0.0.3",
+    version="0.1.0",
     description="A simple socket-based log server based on the Python logging cookbook.",
     long_description=open("README.md", "rt").read(),
     url="https://github.com/luismsgomes/logserver",
